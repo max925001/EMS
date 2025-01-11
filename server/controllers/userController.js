@@ -120,9 +120,17 @@ const login = async (req, res, next) => {
     const user = await User.findOne({
       email,
     }).select("+password"); // ye ish liye kiya hai taki password bhi mile data base se
-    if (!user || !user.comparePassword(password)) {
+ 
+    
+    if (!user) {
       return next(new AppError("Email or password does not match", 400));
     }
+
+    const isMatch = await user.comparePassword(password);
+    if (!isMatch) {
+      return next(new AppError("Email or password does not match", 400));
+    }
+
 
     const token = await user.generateJWTtoken();
     user.password = undefined;

@@ -93,8 +93,10 @@ userSchema.methods ={
     }
 ,
 comparePassword: async function(plaintextPassword){
-
-    return  await bcrypt.compare(plaintextPassword,this.password)
+    
+   const res =  await bcrypt.compare(plaintextPassword,this.password)
+  
+     return res
 },
 generatePasswordResetToken: async function(){
 
