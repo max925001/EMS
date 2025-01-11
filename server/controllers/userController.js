@@ -4,7 +4,6 @@ import User from "../models/userSchema.js";
 import AppError from "../utils/error.js";
 import cloudinary from "cloudinary";
 import fs from "fs/promises";
-import { console } from "inspector";
 import sendEmail from "../utils/nodemailer.js";
 
 const cookieOptions = {
